@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>アンケートFORM</title>
+    <style>
+      .tarea{
+          display: inline-block;
+          width: 100%;
+          padding: 45px;
+          border: 1px solid #999;
+          box-sizing: border-box;
+          background: #f2f2f2;
+          margin: 0.5em 0;
+          line-height: 1.5;
+          height: 6em;
+      }
+    </style>
+    <script defer src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script defer src="/__/firebase/7.14.2/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <h1>いままでの結果</h1>
+
+  <body>
+    <div>
+      <input type="text" textarea class="tarea"  id="resulttext-text">
+      <input type="button" onclick="window.history.back();" value="アンケートに戻る">
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // read
+        db.collection("datas").get().then(function(doc) {
+          document.getElementById("resulttext-text").value=doc.data().vtext
+        });
+
+      });
+    </script>
+  </body>
+</html>
